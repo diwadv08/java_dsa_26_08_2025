@@ -1,4 +1,4 @@
-package Basics;
+package Basics.Olds;
 interface Iterator1{
     int next();
     boolean hasNext();
