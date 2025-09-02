@@ -1,43 +1,50 @@
 package Basics;
 
-
-interface Interator1{
-    int next();
+interface Iterator1<T>{
+    T next();
     boolean hasNext();
 }
-interface Iterabele{
-    Interator1 getInterator1();
+interface Iterable1<T>{
+    Iterator1<T> getIterator1();
 }
+class MyConIterator<T> implements Iterable1<T>{
+    private T[] myArr;
+    MyConIterator(T[] arr){
+        this.myArr=arr;
+    }
 
-class IteratorClass implements Iterabele{
-    public int[] arr = {10,20,30,40,80};
     @Override
-    public Interator1 getInterator1(){
-        return new MyOwnClass();
+    public Iterator1<T> getIterator1(){
+        return new MyInnerClass();
     }
-    private class MyOwnClass implements Interator1{
+    private class MyInnerClass implements Iterator1<T>{
         int index=0;
-        int[] arr={2,3,4,5};
-        @Override
+        @Override 
         public boolean hasNext(){
-            return index<arr.length;
+            return index < myArr.length;
         }
-        @Override
-        public int next(){
-            while (!hasNext()) {
-                throw new RuntimeException("No more elements");
-            }
-            return arr[index++];
+        public T next(){
+            if(!hasNext())
+                throw new RuntimeException("No More Elements");
+            return myArr[index++];
         }
     }
 }
-
 public class Main {
     public static void main(String[] args) {
-        IteratorClass className=new IteratorClass();
-        Interator1 it=className.getInterator1();
-        while (it.hasNext()) {
+        Integer[] intArr={1,6,7,8,10};
+        MyConIterator<Integer> myCon=new MyConIterator<>(intArr);
+        Iterator1<Integer> it=myCon.getIterator1();
+        while(it.hasNext()){
             System.out.println(it.next());
+        }
+
+
+        String[] strArr={"Hello","Bye","World"};
+        MyConIterator<String> myCon1=new MyConIterator<>(strArr);
+        Iterator1<String> it1=myCon1.getIterator1();
+        while(it1.hasNext()){
+            System.out.println(it1.next());
         }
     }
 }
