@@ -122,13 +122,13 @@ public class Patterns {
         //     System.out.println();
         // }
 
-        int num=1;
-        int a1=1;
-        for(i=1;i<=a;i++){
-            for(j=1;j<=a-i+1;j++){
-                System.out.print(num+++" ");
-            }
-            System.out.println();
-        }
+        // int num=1;
+        // int a1=1;
+        // for(i=1;i<=a;i++){
+        //     for(j=1;j<=a-i+1;j++){
+        //         System.out.print(num+++" ");
+        //     }
+        //     System.out.println();
+        // }
     }
 }
